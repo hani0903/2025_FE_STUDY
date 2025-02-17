@@ -1,25 +1,15 @@
+const form = document.querySelector('#shelterForm');
+const input = document.querySelector('#username');
 
-
-const tweetForm = document.querySelector('#tweetForm');
-const tweetsContainer = document.querySelector('#tweets');
-tweetForm.addEventListener('submit', function (e) {
+form.addEventListener('submit', (e) => {
+    // preventDefault는 특정 이벤트의 기본 동작이 수행되지 않도록 막아준다
     e.preventDefault();
 
-    // const usernameInput = document.querySelectorAll('input')[0];
-    // const tweetInput = document.querySelectorAll('input')[1];
-    const usernameInput = tweetForm.elements.username;
-    const tweetInput = tweetForm.elements.tweet;
-    addTweet(usernameInput.value, tweetInput.value)
-    usernameInput.value = '';
-    tweetInput.value = '';
+    const newLI = document.createElement('li');
+    newLI.innerText = input.value;
+
+    const ul = document.querySelector('ul') || document.createElement('ul');
+    ul.appendChild(newLI);
+    document.body.appendChild(ul);
+    input.value = '';
 });
-
-const addTweet = (username, tweet) => {
-    const newTweet = document.createElement('li');
-    const bTag = document.createElement('b');
-    bTag.append(username)
-    newTweet.append(bTag);
-    newTweet.append(`- ${tweet}`)
-    tweetsContainer.append(newTweet);
-}
-
